@@ -1,0 +1,29 @@
+{
+  "summary": "Iteration 3 regression sweep PASSED. Backend: 48/48 pytest cases green including the 9 event types, 4 new portfolio categories (Sangeet/Haldi/Mehendi/Pooja), invalid event_type 422, both Resend email lines in backend logs, new non-email admin username login (sambhrama@2026 / SSDK@2026), /me, logout. Frontend: landing renders without Partners/FAQ/Testimonials sections, footer is Instagram-only with correct sambhrama_04 URL + 2 tel links + mailto, portfolio has 9 filter chips and 8 case studies (1 per category), lightbox -> case-study page renders all required testids, BookingWizard shows 9 event tiles and a full inquiry submission produces 'Inquiry received' success view, admin login at /admin/login with the new username/password succeeds and logout returns to /admin/login.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_sambhrama.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "OPTIONAL: case-study page rendered 0 related-case-* items on the Pooja sample. With only 1 item per category, the related-case logic may return empty when it filters by same category and excludes the current id. If 'related' was intended to fall back to other categories when none match, consider updating CaseStudy.jsx to pick any 3 other portfolio items as fallback. Not blocking for launch."
+  ],
+  "critical_code_review_comments": [
+    "BookingWizard inputs rely on TextInput's data-testid (booking-name/email/phone/etc.) but do not set an HTML `name` attribute on the underlying <input>. Tests / browser autofill / form analytics that look for name=email won't work. Low priority since data-testid is present.",
+    "send_booking_email and send_client_confirmation_email both fire from POST /api/bookings via background task; backend remained < 3s and both 'Booking notification email sent to' + 'Client confirmation email sent to' log lines confirmed in /var/log/supervisor/backend.err.log."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_sambhrama.py"
+  ],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "sambhrama@2026 / SSDK@2026 (admin username, non-email). Legacy admin@sambhrama.com / Sambhrama@2026 still works but new is primary.",
+  "seed_data_creation": "Backend pytest run created bookings TEST_Wedding, TEST_Sangeet, TEST_Haldi, TEST_Mehendi, TEST_Corporate Event, TEST_Festival, TEST_Conference, TEST_Pooja, TEST_Other, TEST_Resend, TEST_BothEmails (admin/bookings collection). One UI inquiry 'TEST_UI_Booking_v3' was also submitted from the live preview URL. Portfolio TEST_* items were created and immediately deleted in the new-category test. All test rows are clearly marked with TEST_ prefix.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Use new admin username 'sambhrama@2026' (not email) with password 'SSDK@2026'. Booking form inputs use data-testid not name attribute -> use [data-testid=booking-name] etc. Budget field is a button group with data-testid=booking-budget-{value}. Portfolio cards use data-testid=portfolio-item-{id}. Filter chips are lowercase: portfolio-filter-{lowercase-dashed}. Lightbox case-study link testid is lightbox-case-study-link. Resend is LIVE; do NOT verify inbox, just check log lines."
+}

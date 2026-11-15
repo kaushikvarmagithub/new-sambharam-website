@@ -1,0 +1,178 @@
+{
+  "project_name": "Sambhrama",
+  "theme": "light",
+  "archetype": "Organic & Earthy with Luxury accents",
+  "emotions": ["Professional", "Celebratory", "Elegant", "Vibrant"],
+  "design_system": {
+    "colors": {
+      "background": "#FAFAF9",
+      "surface": "#FFFFFF",
+      "foreground": "#1C1917",
+      "muted": "#F5F5F4",
+      "muted_foreground": "#78716C",
+      "primary": "#D97706",
+      "primary_foreground": "#FFFFFF",
+      "secondary": "#BE123C",
+      "secondary_foreground": "#FFFFFF",
+      "border": "#E7E5E4",
+      "accent_vibrant": "#F59E0B"
+    },
+    "typography": {
+      "headings": {
+        "family": "Cormorant Garamond",
+        "weight": "font-light to font-semibold",
+        "usage": "H1-H3. Use tracking-tight or tracking-tighter. No Inter."
+      },
+      "body": {
+        "family": "Manrope",
+        "weight": "font-normal",
+        "usage": "Body text, dashboards, labels."
+      },
+      "overline": {
+        "usage": "Uppercase, text-xs, tracking-[0.2em]"
+      },
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap');"
+      ]
+    },
+    "spacing": {
+      "philosophy": "Generous Spacing (p-12 to p-32) for marketing sections to feel premium. Dense for dashboard.",
+      "grid_patterns": {
+        "marketing": "Mode A: The Tetris Grid. Asymmetric. Mix of col-span-8, col-span-4.",
+        "dashboard": "Mode B: The Control Room Grid. grid-cols-1 md:grid-cols-3/4. Tight gap-4."
+      }
+    },
+    "surfaces": {
+      "marketing_cards": "Flat background with 1px subtle border, no shadow. Hover: slight lift and shadow-lg.",
+      "header": "Crystal Glass. backdrop-blur-xl bg-stone-50/70 border-b border-stone-200/50.",
+      "dashboard_cards": "Flat solid background, 1px border border-border, no shadow."
+    },
+    "motion": {
+      "libraries": ["framer-motion", "lenis"],
+      "rules": "Use lenis for momentum scrolling. Use Framer Motion for scroll-triggered staggered entrances. Respect prefers-reduced-motion."
+    },
+    "icons": {
+      "library": "@phosphor-icons/react",
+      "instructions": "yarn add @phosphor-icons/react. Use Duotone weight for marketing pages, Regular for dashboard."
+    }
+  },
+  "sections_strategy": {
+    "hero": {
+      "layout": "Full height (min-h-[90vh]), background image with bg-stone-900/30 overlay to ensure text contrast. Text aligned left or center with generous padding.",
+      "typography": "text-5xl md:text-6xl+ font-serif tracking-tight text-white",
+      "components": "Primary CTA 'Plan Your Event' (solid primary color), Secondary CTA 'Contact Us' (glass/transparent with white border)"
+    },
+    "services": {
+      "layout": "Tetris Bento grid (grid-cols-1 md:grid-cols-12 gap-8). Mix tall and wide cards. Images with hover scale effects.",
+      "style": "Elegant cards with thin borders. Overlay over image or clean text below image."
+    },
+    "portfolio": {
+      "layout": "Filterable masonry-like bento grid. Use framer-motion layout prop for smooth filtering.",
+      "interactions": "Image hover shows a subtle colored overlay (marigold/rose) with 'View Event' text."
+    },
+    "testimonials": {
+      "layout": "Grid or smooth carousel. Use large typography for quotes (font-serif italic).",
+      "style": "Minimalist quote cards. Use 'The Tracing Beam' or delicate borders."
+    },
+    "partners": {
+      "layout": "Horizontal marquee or grid of logos.",
+      "style": "Logos must be grayscale/opacity-70 by default, full color on hover. Use react-fast-marquee if scrolling."
+    },
+    "booking_wizard": {
+      "layout": "Multi-step form using Shadcn UI. Progress indicator at the top.",
+      "style": "Clean, card-based with generous padding. Use brand colors for active step."
+    },
+    "dashboard": {
+      "layout": "Sidebar navigation + main content area. Strict Control Room grid.",
+      "components": "Shadcn Tables, Cards, Charts. Minimalist aesthetic, high data density."
+    }
+  },
+  "media": {
+    "hero": [
+      {
+        "url": "https://static.prod-images.emergentagent.com/jobs/a97c07cb-e67e-46b2-bb5b-697612f8d7cd/images/309bc5eae8b4ba43f1e91f1fd8d76f6ca1734321d92b2260b6398a0ebd7d29f3.png",
+        "category": "hero_background",
+        "description": "Minimalist elegant hero background in warm beige and marigold."
+      }
+    ],
+    "services": [
+      {
+        "url": "https://images.unsplash.com/photo-1771992226340-2054435618e4",
+        "category": "weddings",
+        "description": "Woman adorned with marigold flowers."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1762968269894-1d7e1ce8894e",
+        "category": "corporate",
+        "description": "Man speaking on stage."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1760965824372-9a2c88fc76a1",
+        "category": "festivals",
+        "description": "Festival crowd with red lights."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1775163560631-6ff15eb2fa1f",
+        "category": "conferences",
+        "description": "People mingling at indoor event."
+      }
+    ],
+    "portfolio": [
+      {
+        "url": "https://images.unsplash.com/photo-1762708547916-ac8d2f3af1fc",
+        "category": "wedding_event",
+        "description": "People dancing."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1760461804456-df82b15b07c0",
+        "category": "wedding_event",
+        "description": "Colorful traditional outfit."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1763630055331-f9042cfa43f3",
+        "category": "festival_event",
+        "description": "Concert crowd."
+      },
+      {
+        "url": "https://static.prod-images.emergentagent.com/jobs/a97c07cb-e67e-46b2-bb5b-697612f8d7cd/images/413ff49259cbf6edececfc92b78333ca8c63edc7370f0c9090c01f6350ee96e2.png",
+        "category": "abstract_portfolio_bg",
+        "description": "Terracotta and emerald minimal background."
+      }
+    ],
+    "partners": [
+      {
+        "url": "https://images.unsplash.com/photo-1555274175-75f4056dfd05",
+        "category": "partner_logo",
+        "description": "Adidas logo"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1545231027-637d2f6210f8",
+        "category": "partner_logo",
+        "description": "Starbucks logo"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1620288627223-53302f4e8c74",
+        "category": "partner_logo",
+        "description": "Lamb logo"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1570882280426-df8ac5ccd672",
+        "category": "partner_logo",
+        "description": "Hugo Boss logo"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Install required dependencies: framer-motion, @phosphor-icons/react, lenis (or @studio-freight/react-lenis), react-fast-marquee.",
+    "Do NOT use 'Inter', 'Roboto', 'Open Sans' for headings. Only use 'Cormorant Garamond' for headings and 'Manrope' for body.",
+    "Implement Lenis for smooth scrolling on the marketing site. This is mandatory for the premium feel.",
+    "Use pure HTML/Tailwind for the marketing layouts to allow for asymmetrical bento grids (e.g., Services and Portfolio).",
+    "Use Shadcn UI primarily for the multi-step booking form and the admin dashboard.",
+    "For the admin dashboard, avoid the generic 'SaaS blue' look. Customize Shadcn elements with the project's specific brand colors (Marigold and Rose Red accents).",
+    "All interactive and key informational elements MUST include a `data-testid` attribute (e.g., `data-testid=\"booking-submit-button\"`).",
+    "When placing text over the hero image, ensure a gradient overlay or `bg-black/30` wrapper is used so the text meets APCA/WCAG contrast standards.",
+    "For the 'Press/Partners' section, use the provided logo images and render them as a slow-moving marquee using `react-fast-marquee`. Desaturate them by default and colorize on hover.",
+    "Ensure image heights on mobile do not exceed `80vh` (`max-h-[80vh]`).",
+    "Create the multi-step wizard with smooth transitions between steps using framer-motion's `AnimatePresence`."
+  ]
+}

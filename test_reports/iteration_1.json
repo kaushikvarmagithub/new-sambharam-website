@@ -1,0 +1,46 @@
+{
+  "summary": "First iteration full-stack testing for Sambhrama. Backend: 23/23 pytest tests passed (health, portfolio incl. category filter, testimonials, vendors, booking create + 422 validation, newsletter idempotency, login valid/invalid, /me with+without cookie, logout cookie-clear, admin stats, admin bookings list, booking status update PUT, portfolio CRUD, testimonial create+delete, vendor CRUD). Frontend: landing renders, portfolio category filter (Wedding) shows filtered items, lightbox opens+closes, 3-step booking wizard submits and shows success view + sonner toast, newsletter footer signup works with success toast, /admin/login shows error for invalid creds and redirects to /admin on valid creds, all 5 admin tabs (overview/bookings/portfolio/testimonials/vendors) present and switchable, logout returns to /admin/login, mobile menu (≤768px) opens via nav-mobile-toggle and shows Services/Portfolio/About/Testimonials/Contact. Resend email is correctly best-effort skipped (RESEND_API_KEY blank) and booking POST still returns 201.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Landing nav anchors", "issues": ["Nav links 'Partners' and 'FAQ' would require IDs `#partners` and `#faq` for smooth-scroll anchors; the components render but the section root elements appear to not carry those ids. Nav uses 'Testimonials' and 'Contact' which work. Non-blocking."]}
+    ]
+  },
+  "console_warnings": [
+    "React warning: 'Cannot update a component while rendering a different component' (likely setState during render — check AuthContext.jsx or initial redirect logic in AdminLogin/AdminDashboard).",
+    "Hydration warning: '<span> cannot be a child of <option>' — a Select/option somewhere is wrapping option children in a span (likely in a shadcn Select used inside admin forms or booking budget). Cosmetic, not blocking."
+  ],
+  "test_report_links": [
+    "/app/backend/tests/test_sambhrama.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "(Optional) Add id='partners' to Partners section and id='faq' to FAQ section so Nav smooth-scroll matches link names.",
+    "(Optional) Fix React 'setState during render' warning — trace via React DevTools; likely a navigate() call inside render rather than useEffect.",
+    "(Optional) Fix <span> inside <option> hydration warning by ensuring native <option> children are plain text only."
+  ],
+  "critical_code_review_comments": [
+    "server.py CORS allow_origins hardcodes localhost:3000 in addition to FRONTEND_URL env. Acceptable for preview but consider using CORS_ORIGINS env (which is already present in .env as '*' but unused).",
+    "Booking POST schedules send_booking_email via asyncio.create_task — fine, but no retry/dead-letter; acceptable for best-effort.",
+    "seed_admin correctly re-hashes if password changed (idempotent). Good.",
+    "JWT cookie is SameSite=None Secure — required for cross-site preview URLs. Good.",
+    "All public list endpoints exclude `_id`. Good.",
+    "No file-size violations; server.py is ~630 lines — acceptable but could be split when more features land."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_sambhrama.py (new)",
+    "/app/test_reports/pytest/pytest_results.xml (new)"
+  ],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "admin@sambhrama.com / Sambhrama@2026 (works, confirmed)",
+  "seed_data_creation": "Backend seeds 8 portfolio items, 4 testimonials, 4 vendors and the admin user automatically on startup. Verified by GET responses.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "All 23 backend pytest tests in /app/backend/tests/test_sambhrama.py pass. Frontend critical flows (landing, portfolio filter+lightbox, booking wizard, newsletter, admin login/dashboard tabs/logout, mobile menu) all verified via Playwright. Resend email is intentionally skipped because RESEND_API_KEY is blank — expected. Only minor cosmetic issues: two React console warnings (setState-during-render + <span> in <option>) and missing #partners/#faq anchor ids — none block functionality.",
+  "rca_of_the_issue": "N/A — no failures encountered."
+}
